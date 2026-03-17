@@ -28,7 +28,7 @@ The dataset contains thousands of recipes and includes variables such as:
 
 ## Data Cleaning
 
-Following the dataset instructions :contentReference[oaicite:0]{index=0}:
+Following the dataset instructions:
 
 - Ratings of `0` were replaced with `NaN` since they represent missing values  
 - Average rating per recipe was computed and merged into the recipes dataset  
