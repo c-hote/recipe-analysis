@@ -46,6 +46,29 @@ Following the dataset instructions:
 
 These steps ensure the dataset reflects the true data-generating process and is suitable for analysis.
 
+Below is the head of the cleaned dataset:
+
+| name                                  | minutes | ingredient_count | step_count | calories | protein | avg_rating |
+|--------------------------------------|---------|------------------|------------|----------|---------|------------|
+| 1 brownies in the world best ever    | 40      | 9                | 10         | 138.4    | 3.0     | 4.0        |
+| 1 in canada chocolate chip cookies   | 45      | 11               | 12         | 595.1    | 13.0    | 5.0        |
+| 412 broccoli casserole               | 40      | 9                | 6          | 194.8    | 22.0    | 5.0        |
+| millionaire pound cake               | 120     | 7                | 7          | 878.3    | 20.0    | 5.0        |
+| 2000 meatloaf                        | 90      | 13               | 17         | 267.0    | 29.0    | 5.0        |
+
+## Interesting Aggregates
+
+Below is a grouped summary of average rating by preparation time bin:
+
+| time_bin | avg_rating |
+|----------|------------|
+| 0-30     | 4.38       |
+| 31-60    | 4.40       |
+| 61-120   | 4.43       |
+| 121-300  | 4.45       |
+| 300+     | 4.47       |
+
+This table suggests that recipes requiring more preparation time tend to receive slightly higher ratings, though the differences are relatively small.
 ---
 
 ## Univariate Analysis
@@ -260,12 +283,16 @@ Model performs worse for quick recipes.
 A permutation test was conducted on the difference in precision.
 
 **Result:**  
-The p-value suggests no strong evidence of unfairness.
+The p-value suggests strong evidence of unfairness.
 Significance level: **α = 0.05**
 
 Observed p-value: **p = 0.002**
 **Conclusion:**  
-The model does not appear to systematically disadvantage one group over the other.
+Because the p-value (0.002) is less than the significance level (0.05), we reject the null hypothesis.
+
+This provides statistical evidence that the model’s precision differs between quick and long recipes. In particular, the model performs worse for quick recipes, indicating a potential fairness concern.
+
+However, this analysis is observational, and further investigation would be needed to determine the underlying cause of this disparity. 
 
 ---
 
