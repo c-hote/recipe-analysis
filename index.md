@@ -15,12 +15,16 @@ This project investigates the question:
 
 To answer this, I analyze a dataset of recipes and user interactions, focusing on preparation time, complexity, and nutritional content.
 
-The dataset contains thousands of recipes and includes variables such as:
+The merged dataset contains approximately **83,782 recipes** after cleaning.
 
-- `minutes` (preparation time)  
-- `ingredients` and `steps`  
-- `nutrition` (calories, fat, sugar, etc.)  
-- `avg_rating` (computed from user ratings)  
+The most relevant variables used in this analysis are:
+
+- `minutes` (quantitative): time required to prepare the recipe  
+- `ingredient_count` (quantitative): number of ingredients used  
+- `step_count` (quantitative): number of steps in the recipe  
+- `calories`, `protein`, `sugar` (quantitative): nutritional features  
+- `description_length` (quantitative): length of recipe description  
+- `avg_rating` (quantitative): average user rating per recipe  
 
 ---
 
@@ -90,7 +94,12 @@ Permutation tests were used to evaluate whether missing ratings depend on other 
 
 <iframe src="assets/missingness_plot.html" width="800" height="600" frameborder="0"></iframe>
 
-The results suggest that missingness depends on observable variables such as recipe characteristics, indicating a **Missing At Random (MAR)** mechanism rather than completely random missingness.
+Permutation tests were used to evaluate whether the missingness of `avg_rating` depends on other variables.
+
+- The missingness **does depend on `minutes`** (p-value = X), suggesting that recipes with longer preparation times are more or less likely to receive ratings.
+- The missingness **does not depend on `protein`** (p-value = Y), indicating no evidence of association.
+
+These results suggest that the missingness mechanism is **Missing At Random (MAR)**, since it depends on observed variables but not necessarily on the missing values themselves.
 
 ---
 
@@ -112,6 +121,10 @@ The test statistic was the difference in mean ratings. A permutation test was pe
 
 **Result:**  
 The p-value was not sufficiently small, so we fail to reject the null hypothesis.
+
+Significance level: **α = 0.05**
+
+Observed p-value: **p = X**
 
 **Conclusion:**  
 There is not strong statistical evidence that longer recipes receive higher ratings.
@@ -146,7 +159,16 @@ The baseline model uses **logistic regression** with the following features:
 
 Numerical features were standardized using a pipeline.
 
-The baseline model achieved reasonable performance but showed a key limitation: it predicted nearly all recipes as highly rated, leading to very high recall but less balanced performance overall.
+The baseline model achieved the following performance:
+
+- Accuracy: 0.750601
+- Precision: 0.750739
+- Recall: 0.999754
+- F1-score: 0.857535
+
+All features used are **quantitative**, and no categorical encoding was required.
+
+While the model achieves very high recall, it predicts nearly all recipes as highly rated. This results in weaker precision and indicates that the model is not well-balanced.
 
 This suggests the need for:
 - better feature engineering  
@@ -194,6 +216,22 @@ Additional analysis included:
 - cross-validation results  
 - confusion matrix  
 
+The best Random Forest hyperparameters were:
+
+- n_estimators: X  
+- max_depth: X  
+- min_samples_split: X  
+- min_samples_leaf: X  
+- class_weight: X  
+
+The final model achieved:
+
+- Accuracy: X  
+- Precision: X  
+- Recall: X  
+- F1-score: X  
+
+Compared to the baseline, the final model shows improved balance between precision and recall, leading to a more reliable identification of highly rated recipes.
 ---
 
 ### Key findings
@@ -223,7 +261,9 @@ A permutation test was conducted on the difference in precision.
 
 **Result:**  
 The p-value suggests no strong evidence of unfairness.
+Significance level: **α = 0.05**
 
+Observed p-value: **p = X**
 **Conclusion:**  
 The model does not appear to systematically disadvantage one group over the other.
 
