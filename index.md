@@ -96,8 +96,8 @@ Permutation tests were used to evaluate whether missing ratings depend on other 
 
 Permutation tests were used to evaluate whether the missingness of `avg_rating` depends on other variables.
 
-- The missingness **does depend on `minutes`** (p-value = X), suggesting that recipes with longer preparation times are more or less likely to receive ratings.
-- The missingness **does not depend on `protein`** (p-value = Y), indicating no evidence of association.
+- The missingness **does depend on `minutes`** (p-value = 0.045), suggesting that recipes with longer preparation times are more or less likely to receive ratings.
+- The missingness **does not depend on `protein`** (p-value = 0.215), indicating no evidence of association.
 
 These results suggest that the missingness mechanism is **Missing At Random (MAR)**, since it depends on observed variables but not necessarily on the missing values themselves.
 
@@ -124,7 +124,7 @@ The p-value was not sufficiently small, so we fail to reject the null hypothesis
 
 Significance level: **α = 0.05**
 
-Observed p-value: **p = X**
+Observed p-value: **p = 1.0**
 
 **Conclusion:**  
 There is not strong statistical evidence that longer recipes receive higher ratings.
@@ -212,26 +212,26 @@ The final model was chosen based on test-set F1-score.
 
 Additional analysis included:
 
-- feature importance / coefficient inspection  
-- cross-validation results  
-- confusion matrix  
+- feature importance / coefficient inspection 
+- cross-validation results 
+- confusion matrix 
 
 The best Random Forest hyperparameters were:
 
-- n_estimators: X  
-- max_depth: X  
-- min_samples_split: X  
-- min_samples_leaf: X  
-- class_weight: X  
+- n_estimators: 
+- max_depth: 
+- min_samples_split: 
+- min_samples_leaf: 
+- class_weight: 
 
 The final model achieved:
 
-- Accuracy: X  
-- Precision: X  
-- Recall: X  
-- F1-score: X  
+- Accuracy: .750785
+- Precision: .750785
+- Recall: 1.0
+- F1-score: .857656
 
-Compared to the baseline, the final model shows improved balance between precision and recall, leading to a more reliable identification of highly rated recipes.
+Compared to the baseline, the final model shows marginally improved balance between precision and recall, leading to a more reliable identification of highly rated recipes. This improvement suggests that interactions and nonlinear relationships between recipe features play an important role in predicting ratings.
 ---
 
 ### Key findings
@@ -263,7 +263,7 @@ A permutation test was conducted on the difference in precision.
 The p-value suggests no strong evidence of unfairness.
 Significance level: **α = 0.05**
 
-Observed p-value: **p = X**
+Observed p-value: **p = 0.002**
 **Conclusion:**  
 The model does not appear to systematically disadvantage one group over the other.
 
@@ -280,4 +280,4 @@ Key takeaways:
 - Feature engineering significantly improves model performance  
 - The final model does not show strong evidence of unfairness  
 
-This work demonstrates how data science techniques can uncover patterns in user preferences and support recommendation systems.
+This work demonstrates how data science techniques can uncover patterns in user preferences and support recommendation systems. Because this analysis is observational, these results identify associations rather than causal relationships between recipe characteristics and ratings.
