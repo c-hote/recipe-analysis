@@ -218,11 +218,11 @@ Additional analysis included:
 
 The best Random Forest hyperparameters were:
 
-- n_estimators: 
-- max_depth: 
-- min_samples_split: 
-- min_samples_leaf: 
-- class_weight: 
+- n_estimators: 150
+- max_depth: 10
+- min_samples_split: 2
+- min_samples_leaf: 5
+- class_weight: None
 
 The final model achieved:
 
